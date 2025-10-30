@@ -1,0 +1,22 @@
+[package]
+name = "sustencoins_contract"
+version = "0.0.1"
+edition = "2021"
+description = "Contrato inteligente Soroban para tokenizar experiencias de turismo sostenible (SUSC)"
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+soroban-sdk = "20.2.0" # Versión actual de Soroban SDK
+soroban-token-sdk = "20.2.0" # Para usar el estándar de token (SEP-41)
+
+[features]
+testutils = ["soroban-sdk/testutils"]
+
+[profile.release]
+opt-level = "z"
+overflow-checks = true
+lto = true
+panic = "abort"

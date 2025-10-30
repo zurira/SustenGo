@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SustenCoins - Turismo Sostenible con Blockchain</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@4.0.3/dist/web3.min.js"></script>
+    <link rel="stylesheet" href="css/style.css"> 
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">🌿</span>
+                <span>SustenCoins</span>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="#experiences">Experiencias</a></li>
+                    <li><a href="#impact">Tu Impacto</a></li>
+                    <li><a href="#map-tracking">Rastreo</a></li>
+                    <li><a href="#nfts">NFTs</a></li>
+                    <li><a href="#exchange">Canje</a></li>
+                    <li><a href="#about">Acerca de</a></li>
+                </ul>
+            </nav>
+
+            <div class="wallet-section">
+                <div class="wallet-info" id="walletInfo">
+                    No conectado
+                </div>
+                <button class="btn btn-primary" id="connectWallet">Conectar Wallet</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h1>Turismo Sostenible con Blockchain</h1>
+        <p>Gana tokens ecológicos por participar en experiencias turísticas responsables y ayuda a construir economías locales sostenibles.</p>
+        <button class="btn btn-secondary" id="exploreBtn">Explorar Experiencias</button>
+    </div>
+</section>
+
+<section class="section" id="experiences">
+    <div class="container">
+        <h2 class="section-title">🌎 Experiencias Sostenibles Verificadas</h2>
+
+        <div class="experiences-grid" id="experiencesGrid">
+            </div>
+    </div>
+</section>
+
+<section class="section" id="map-tracking">
+    <div class="container">
+        <h2 class="section-title">📍 Rastreo de Viaje y Verificación (Google Maps)</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">Inicia una experiencia para comenzar el rastreo. Al llegar al destino verificado, se acuñarán tus $SUSC$.</p>
+        
+        <div id="mapContainer" style="height: 400px; width: 100%; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></div>
+        
+        <div style="text-align: center; margin-top: 2rem;">
+            <button class="btn btn-primary" id="startTrackingBtn" style="padding: 15px 30px;" disabled>
+                Iniciar Rastreo de Experiencia
+            </button>
+        </div>
+    </div>
+</section>
+<section class="section impact-section" id="impact">
+    <div class="container">
+        <h2 class="section-title">📊 Tu Impacto Ambiental</h2>
+
+        <div class="impact-stats">
+            <div class="stat-card">
+                <h3>Total SUSC Ganados</h3>
+                <div class="stat-value" id="totalSUSC">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Experiencias Completadas</h3>
+                <div class="stat-value" id="completedExperiences">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>NFTs de Impacto</h3>
+                <div class="stat-value" id="impactNFTs">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Comunidades Apoyadas</h3>
+                <div class="stat-value" id="communitiesSupported">3</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="nfts">
+    <div class="container">
+        <h2 class="section-title">🎨 Tokens de Impacto Ecológico</h2>
+
+        <div class="nft-grid">
+            <div class="nft-card">
+                <h3>Guardian del Ajusco</h3>
+                <p>Token exclusivo por participar en la conservación de la Reserva Forestal del Ajusco-Chichinautzin (zona norte de Morelos).</p>
+                <p><strong>Requisito:</strong> 100 SUSC + 1 experiencia de reforestación</p>
+                <button class="btn-nft" data-nft="ajusco">Obtener NFT</button>
+            </div>
+            
+            <div class="nft-card">
+                <h3>Custodio de la Sierra</h3>
+                <p>Token por apoyar la preservación de la biodiversidad en la Sierra de Huautla (Reserva de la Biósfera).</p>
+                <p><strong>Requisito:</strong> 75 SUSC + 1 experiencia de monitoreo de fauna</p>
+                <button class="btn-nft" data-nft="huautla">Obtener NFT</button>
+            </div>
+            
+            <div class="nft-card">
+                <h3>Defensor de Tepoztlán</h3>
+                <p>Token por contribuir a la limpieza y el mantenimiento de senderos arqueológicos y áreas naturales protegidas de Tepoztlán.</p>
+                <p><strong>Requisito:</strong> 120 SUSC + 1 experiencia de limpieza/mantenimiento</p>
+                <button class="btn-nft" data-nft="tepoztlan">Obtener NFT</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="exchange">
+    <div class="container">
+        <h2 class="section-title">🎁 Canjes y Donaciones con $SUSC$</h2>
+
+        <div class="experiences-grid">
+            <div class="experience-card">
+                <div class="card-content">
+                    <h3>Entrada a Museo (Canje)</h3>
+                    <p>Canjea tus SUSC por una entrada al Museo de Arte Moderno. ¡Soporte a la cultura!</p>
+                    <div class="card-details"><span>Precio:</span><span>50 SUSC</span></div>
+                    <button class="btn btn-primary" onclick="redeemTicket('museum_modern_art', 50)">Canjear</button>
+                </div>
+            </div>
+
+            <div class="experience-card">
+                <div class="card-content">
+                    <h3>Donación a Fundación</h3>
+                    <p>Apoya a la fundación "Niños con Cáncer". 100% de transparencia en Blockchain.</p>
+                    <input type="number" id="donationAmount" placeholder="Monto en SUSC" class="form-group" style="padding: 10px; width: 100%; border-radius: 6px; margin-bottom: 10px; border: 1px solid var(--primary-light);">
+                    <button class="btn btn-secondary" onclick="donateToFoundation('FOUND_CANC', parseInt(document.getElementById('donationAmount').value || 0))">Donar Ahora</button>
+                </div>
+            </div>
+            
+            <div class="experience-card">
+                <div class="card-content">
+                    <h3>Noche en Eco-Casa</h3>
+                    <p>Canjea SUSC por una noche en una casa rural sostenible certificada.</p>
+                    <div class="card-details"><span>Precio:</span><span>200 SUSC</span></div>
+                    <button class="btn btn-primary" onclick="redeemTicket('eco_lodge_night', 200)">Canjear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer id="about">
+    <div class="container">
+        <div class="footer-content">
+            <div class="logo">
+                <span class="logo-icon">🌿</span>
+                <span>SustenCoins</span>
+            </div>
+
+            <p>Promoviendo el turismo sostenible a través de la tecnología blockchain</p>
+
+            <div class="footer-links">
+                <a href="#">Términos de Servicio</a>
+                <a href="#">Política de Privacidad</a>
+                <a href="#">Contacto</a>
+                <a href="#">Documentación</a>
+            </div>
+
+            <p>&copy; 2023 SustenCoins. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<div class="modal" id="experienceModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">Detalles de Experiencia</h2>
+            <button class="close-modal" id="closeModal">&times;</button>
+        </div>
+        <div id="modalBody">
+            </div>
+    </div>
+</div>
+
+<script async defer 
+    src="https://maps.googleapis.com/maps/api/js?key=TU_CLAVE_API_DE_GOOGLE_MAPS&callback=initMap">
+</script>
+
+<script src="js/app.js"></script>
+</body>
+</html>
